@@ -15,7 +15,7 @@
   cursor: grabbing;
 }
 
-/* Enhanced title container for fullscreen */
+/* Enhanced title container for fullscreen with smaller text */
 .face-title-container {
   position: fixed;
   left: 8%;
@@ -23,12 +23,12 @@
   transform: translateY(-50%);
   z-index: 200;
   pointer-events: none;
-  max-width: 40%;
+  max-width: 35%; /* Reduced from 40% to prevent overlap */
 }
 
 .face-title {
   font-family: 'Orbitron', 'Press Start 2P', monospace;
-  font-size: clamp(3rem, 8vw, 8rem);
+  font-size: clamp(2rem, 5vw, 4.5rem); /* Reduced from 8rem max to 4.5rem */
   font-weight: 900;
   color: #00ff41;
   text-shadow: 
@@ -39,7 +39,7 @@
     6px 6px 0px #8000ff;
   margin: 0;
   line-height: 1;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em; /* Reduced letter spacing */
   text-transform: uppercase;
   animation: titlePulse 3s ease-in-out infinite;
   filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.5));
@@ -51,7 +51,7 @@
   hyphens: none;
 }
 
-/* Enhanced description container for fullscreen */
+/* Enhanced description container for fullscreen with smaller text */
 .face-description-container {
   position: fixed;
   right: 8%;
@@ -59,21 +59,21 @@
   transform: translateY(-50%);
   z-index: 200;
   pointer-events: none;
-  max-width: 35%;
+  max-width: 30%; /* Reduced from 35% */
 }
 
 .face-description {
   font-family: 'Press Start 2P', monospace;
-  font-size: clamp(1rem, 2.5vw, 2rem);
+  font-size: clamp(0.7rem, 1.5vw, 1.2rem); /* Reduced from 2rem max to 1.2rem */
   color: #00ffff;
   text-shadow: 
     0 0 10px #00ffff,
     0 0 20px #00ffff;
   margin: 0;
-  line-height: 1.8;
+  line-height: 1.6; /* Improved line height */
   text-align: right;
   background: rgba(0, 255, 255, 0.1);
-  padding: 25px;
+  padding: 20px; /* Reduced from 25px */
   border: 3px solid rgba(0, 255, 255, 0.3);
   backdrop-filter: blur(15px);
   border-radius: 15px;
@@ -92,8 +92,8 @@
   position: fixed;
   left: 50%;
   z-index: 300;
-  width: 100px;
-  height: 100px;
+  width: 80px; /* Reduced from 100px */
+  height: 80px; /* Reduced from 100px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +101,7 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  border: 5px solid #00ff41;
+  border: 4px solid #00ff41; /* Reduced border width */
   box-shadow: 
     0 0 30px rgba(0, 255, 65, 0.7),
     inset 0 0 30px rgba(255, 255, 255, 0.1);
@@ -125,7 +125,7 @@
   box-shadow: 
     0 0 50px rgba(0, 255, 65, 1),
     inset 0 0 40px rgba(255, 255, 255, 0.2);
-  transform: translateX(-50%) scale(1.15);
+  transform: translateX(-50%) scale(1.1); /* Reduced scale from 1.15 */
 }
 
 .action-button:hover::before {
@@ -138,7 +138,7 @@
 }
 
 .action-button-icon {
-  font-size: 40px;
+  font-size: 30px; /* Reduced from 40px */
   color: #ffffff;
   text-shadow: 0 0 15px #ffffff;
   z-index: 2;
@@ -197,7 +197,7 @@
   content: attr(data-text);
   position: absolute;
   top: 0;
-  left: 3px;
+  left: 2px; /* Reduced from 3px */
   z-index: -1;
   color: #ff0080;
   animation: glitch 0.4s infinite;
@@ -207,7 +207,7 @@
   content: attr(data-text);
   position: absolute;
   top: 0;
-  left: -3px;
+  left: -2px; /* Reduced from -3px */
   z-index: -2;
   color: #8000ff;
   animation: glitch 0.4s infinite reverse;
@@ -215,10 +215,10 @@
 
 @keyframes glitch {
   0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-3px); }
-  40% { transform: translateX(3px); }
-  60% { transform: translateX(-2px); }
-  80% { transform: translateX(2px); }
+  20% { transform: translateX(-2px); } /* Reduced from -3px */
+  40% { transform: translateX(2px); } /* Reduced from 3px */
+  60% { transform: translateX(-1px); } /* Reduced from -2px */
+  80% { transform: translateX(1px); } /* Reduced from 2px */
 }
 
 @keyframes titlePulse {
@@ -232,60 +232,60 @@
   }
   50% { 
     text-shadow: 
-      0 0 25px #00ff41,
-      0 0 50px #00ff41,
-      0 0 75px #00ff41,
+      0 0 20px #00ff41, /* Reduced glow intensity */
+      0 0 40px #00ff41,
+      0 0 60px #00ff41,
       4px 4px 0px #ff0080,
       8px 8px 0px #8000ff;
   }
 }
 
-/* Responsive design for fullscreen */
+/* Responsive design for fullscreen with smaller text */
 @media (max-width: 1200px) {
   .face-title {
-    font-size: clamp(2.5rem, 7vw, 6rem);
-    white-space: nowrap; /* Keep this for medium screens */
+    font-size: clamp(1.8rem, 4.5vw, 3.5rem); /* Further reduced */
+    white-space: nowrap;
   }
   
   .face-description {
-    font-size: clamp(0.9rem, 2vw, 1.8rem);
+    font-size: clamp(0.6rem, 1.3vw, 1rem); /* Further reduced */
   }
   
   .face-title-container,
   .face-description-container {
-    max-width: 42%;
+    max-width: 40%;
   }
 }
 
 @media (max-width: 768px) {
   .face-title-container {
     left: 5%;
-    max-width: 45%;
+    max-width: 42%;
   }
   
   .face-description-container {
     right: 5%;
-    max-width: 45%;
+    max-width: 42%;
   }
   
   .face-title {
-    font-size: clamp(2rem, 6vw, 4rem);
-    white-space: nowrap; /* Keep single line on mobile */
+    font-size: clamp(1.5rem, 4vw, 2.8rem); /* Smaller for mobile */
+    white-space: nowrap;
   }
   
   .face-description {
-    font-size: clamp(0.8rem, 1.8vw, 1.4rem);
-    padding: 20px;
+    font-size: clamp(0.5rem, 1.2vw, 0.9rem); /* Smaller for mobile */
+    padding: 15px;
   }
   
   .action-button {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     bottom: 5%;
   }
   
   .action-button-icon {
-    font-size: 30px;
+    font-size: 24px;
   }
 }
 
@@ -295,7 +295,7 @@
     position: fixed;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    max-width: 90%;
+    max-width: 85%;
     text-align: center;
   }
   
@@ -308,32 +308,34 @@
   }
   
   .face-title {
-    white-space: nowrap; /* Force single line even on small screens */
-    font-size: clamp(1.5rem, 5vw, 3rem);
+    white-space: nowrap;
+    font-size: clamp(1.2rem, 3.5vw, 2.2rem); /* Even smaller for very small screens */
   }
   
   .face-description {
     text-align: center;
+    font-size: clamp(0.4rem, 1vw, 0.8rem);
   }
   
   .action-button {
     bottom: 3%;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
   }
   
   .action-button-icon {
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 
 /* Alternative approach for very long words */
 @media (max-width: 320px) {
   .face-title {
-    white-space: normal; /* Allow wrapping only on very small screens */
+    white-space: normal;
     word-break: keep-all;
     overflow-wrap: break-word;
     text-align: center;
     line-height: 1.1;
+    font-size: clamp(1rem, 3vw, 1.8rem); /* Very small for tiny screens */
   }
 }
