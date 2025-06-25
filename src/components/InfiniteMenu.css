@@ -1,0 +1,158 @@
+/* Base styles from your requirements */
+#infinite-grid-menu-canvas {
+  cursor: grab;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  outline: none;
+}
+
+#infinite-grid-menu-canvas:active {
+  cursor: grabbing;
+}
+
+.action-button {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(45deg, #ff0080, #8000ff);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+  transition: all 0.3s ease;
+}
+
+.action-button:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.8);
+  transform: translateX(-50%) scale(1.1);
+}
+
+.face-title {
+  user-select: none;
+  position: absolute;
+  font-weight: 900;
+  font-size: 4rem;
+  left: 1.6em;
+  top: 50%;
+  font-family: 'Press Start 2P', monospace;
+  color: #00ff41;
+  text-shadow: 0 0 15px #00ff41;
+}
+
+.action-button-icon {
+  user-select: none;
+  position: relative;
+  color: #ffffff;
+  top: 2px;
+  font-size: 26px;
+  text-shadow: 0 0 10px #ffffff;
+}
+
+.face-title {
+  position: absolute;
+  top: 50%;
+  transform: translate(20%, -50%);
+}
+
+.face-title.active {
+  opacity: 1;
+  transform: translate(20%, -50%);
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.face-title.inactive {
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.1s ease;
+}
+
+.face-description {
+  user-select: none;
+  position: absolute;
+  max-width: 10ch;
+  top: 50%;
+  font-size: 1.5rem;
+  right: 1%;
+  transform: translate(0, -50%);
+  font-family: 'Press Start 2P', monospace;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.face-description.active {
+  opacity: 1;
+  transform: translate(-90%, -50%);
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.face-description.inactive {
+  pointer-events: none;
+  transform: translate(-60%, -50%);
+  opacity: 0;
+  transition: 0.1s ease;
+}
+
+.action-button.active {
+  bottom: 3.8em;
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.action-button.inactive {
+  bottom: -80px;
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.1s ease;
+}
+
+@media (max-width: 1500px) {
+  .face-title, .face-description {
+    display: none;
+  }
+}
+
+/* Additional retro gaming enhancements */
+.face-title::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+  z-index: -1;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.face-description::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  right: -10px;
+  top: 0;
+  background: #00ffff;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

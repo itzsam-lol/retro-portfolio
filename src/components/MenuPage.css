@@ -1,0 +1,78 @@
+.menu-container {
+  min-height: 100vh;
+  position: relative;
+  background: radial-gradient(circle at center, #330066, #000000);
+  overflow: hidden;
+}
+
+.menu-header {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 100;
+}
+
+.menu-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #ff0080;
+  text-shadow: 0 0 20px #ff0080;
+  margin-bottom: 10px;
+  animation: pixelGlow 3s ease-in-out infinite;
+}
+
+.menu-subtitle {
+  font-size: clamp(0.6rem, 1.5vw, 1rem);
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.infinite-menu-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 70vh;
+  max-width: 1200px;
+  max-height: 800px;
+}
+
+/* Override InfiniteMenu styles for retro theme */
+.infinite-menu-wrapper .face-title {
+  font-family: 'Press Start 2P', monospace !important;
+  color: #00ff41 !important;
+  text-shadow: 0 0 15px #00ff41 !important;
+  font-size: clamp(2rem, 4vw, 4rem) !important;
+}
+
+.infinite-menu-wrapper .face-description {
+  font-family: 'Press Start 2P', monospace !important;
+  color: #00ffff !important;
+  text-shadow: 0 0 10px #00ffff !important;
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem) !important;
+}
+
+.infinite-menu-wrapper .action-button {
+  background: linear-gradient(45deg, #ff0080, #8000ff) !important;
+  border: 3px solid #00ff41 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5) !important;
+}
+
+.infinite-menu-wrapper .action-button:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.8) !important;
+  transform: translateX(-50%) scale(1.1) !important;
+}
+
+@media (max-width: 768px) {
+  .infinite-menu-wrapper {
+    width: 95vw;
+    height: 60vh;
+  }
+  
+  .menu-header {
+    top: 40px;
+  }
+}
