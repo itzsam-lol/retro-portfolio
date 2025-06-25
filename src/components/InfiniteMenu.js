@@ -352,6 +352,7 @@ function createAndSetupTexture(gl, minFilter, magFilter, wrapS, wrapT) {
   return texture;
 }
 
+// [Keep the complete ArcballControl and InfiniteGridMenu classes with the fixes]
 class ArcballControl {
   isPointerDown = false;
   orientation = quat.create();
@@ -557,9 +558,16 @@ class InfiniteGridMenu {
   #init(onInit) {
     this.gl = this.canvas.getContext('webgl2', { antialias: true, alpha: false });
     const gl = this.gl;
+    
     if (!gl) {
-      throw new Error('No WebGL 2 context!');
+      console.error('WebGL 2 not supported. Trying WebGL 1...');
+      this.gl = this.canvas.getContext('webgl', { antialias: true, alpha: false });
+      if (!this.gl) {
+        throw new Error('WebGL not supported in this browser!');
+      }
     }
+
+    console.log('WebGL context created successfully');
 
     this.viewportSize = vec2.fromValues(this.canvas.clientWidth, this.canvas.clientHeight);
     this.drawBufferSize = vec2.clone(this.viewportSize);
@@ -629,26 +637,54 @@ class InfiniteGridMenu {
     canvas.width = this.atlasSize * cellSize;
     canvas.height = this.atlasSize * cellSize;
 
+    // Fill with a default background first
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     Promise.all(this.items.map(item =>
       new Promise(resolve => {
         const img = new Image();
         img.crossOrigin = 'anonymous';
-        img.onload = () => resolve(img);
-        img.onerror = () => resolve(null);
+        img.onload = () => resolve({ img, success: true });
+        img.onerror = () => {
+          console.warn('Failed to load image:', item.image);
+          resolve({ img: null, success: false });
+        };
         img.src = item.image;
       })
-    )).then(images => {
-      images.forEach((img, i) => {
-        if (img) {
-          const x = (i % this.atlasSize) * cellSize;
-          const y = Math.floor(i / this.atlasSize) * cellSize;
-          ctx.drawImage(img, x, y, cellSize, cellSize);
+    )).then(results => {
+      results.forEach((result, i) => {
+        const x = (i % this.atlasSize) * cellSize;
+        const y = Math.floor(i / this.atlasSize) * cellSize;
+        
+        if (result.success && result.img) {
+          ctx.drawImage(result.img, x, y, cellSize, cellSize);
+        } else {
+          // Draw a placeholder for failed images
+          ctx.fillStyle = '#333333';
+          ctx.fillRect(x, y, cellSize, cellSize);
+          ctx.fillStyle = '#00ff41';
+          ctx.font = '48px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('?', x + cellSize/2, y + cellSize/2);
         }
       });
 
       gl.bindTexture(gl.TEXTURE_2D, this.tex);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
       gl.generateMipmap(gl.TEXTURE_2D);
+    }).catch(error => {
+      console.error('Error loading textures:', error);
+      // Create a fallback texture
+      const fallbackCanvas = document.createElement('canvas');
+      fallbackCanvas.width = cellSize;
+      fallbackCanvas.height = cellSize;
+      const fallbackCtx = fallbackCanvas.getContext('2d');
+      fallbackCtx.fillStyle = '#333333';
+      fallbackCtx.fillRect(0, 0, cellSize, cellSize);
+      
+      gl.bindTexture(gl.TEXTURE_2D, this.tex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, fallbackCanvas);
     });
   }
 
@@ -830,10 +866,10 @@ class InfiniteGridMenu {
 
 const defaultItems = [
   {
-    image: 'https://picsum.photos/900/900?grayscale',
-    link: 'https://google.com/',
-    title: 'Default Item',
-    description: 'Default description'
+    image: 'https://picsum.photos/400/400?random=1',
+    link: '/experience',
+    title: 'EXPERIENCE',
+    description: 'Professional journey'
   }
 ];
 
@@ -848,18 +884,24 @@ export default function InfiniteMenu({ items = [] }) {
     let sketch;
 
     const handleActiveItem = (index) => {
+      if (items.length === 0) return;
       const itemIndex = index % items.length;
       setActiveItem(items[itemIndex]);
+      console.log('Active item set:', items[itemIndex]);
     };
 
     if (canvas) {
-      sketch = new InfiniteGridMenu(
-        canvas,
-        items.length ? items : defaultItems,
-        handleActiveItem,
-        setIsMoving,
-        (sk) => sk.run()
-      );
+      try {
+        sketch = new InfiniteGridMenu(
+          canvas,
+          items.length ? items : defaultItems,
+          handleActiveItem,
+          setIsMoving,
+          (sk) => sk.run()
+        );
+      } catch (error) {
+        console.error('Failed to initialize InfiniteGridMenu:', error);
+      }
     }
 
     const handleResize = () => {
@@ -877,11 +919,19 @@ export default function InfiniteMenu({ items = [] }) {
   }, [items]);
 
   const handleButtonClick = () => {
-    if (!activeItem?.link) return;
+    if (!activeItem?.link) {
+      console.log('No active item or link');
+      return;
+    }
+    
+    console.log('Navigating to:', activeItem.link);
+    
     if (activeItem.link.startsWith('http')) {
       window.open(activeItem.link, '_blank');
     } else if (activeItem.link.startsWith('/')) {
       navigate(activeItem.link);
+    } else {
+      console.warn('Invalid link format:', activeItem.link);
     }
   };
 
@@ -890,20 +940,25 @@ export default function InfiniteMenu({ items = [] }) {
       <canvas
         id="infinite-grid-menu-canvas"
         ref={canvasRef}
+        style={{ width: '100%', height: '100%' }}
       />
 
       {activeItem && (
         <>
-          <h2 className={`face-title ${isMoving ? 'inactive' : 'active'}`}>
-            {activeItem.title}
-          </h2>
+          <div className={`face-title-container ${isMoving ? 'inactive' : 'active'}`}>
+            <h2 className="face-title" data-text={activeItem.title}>
+              {activeItem.title}
+            </h2>
+          </div>
 
-          <p className={`face-description ${isMoving ? 'inactive' : 'active'}`}>
-            {activeItem.description}
-          </p>
+          <div className={`face-description-container ${isMoving ? 'inactive' : 'active'}`}>
+            <p className="face-description">
+              {activeItem.description}
+            </p>
+          </div>
 
           <div onClick={handleButtonClick} className={`action-button ${isMoving ? 'inactive' : 'active'}`}>
-            <p className="action-button-icon">&#x2197;</p>
+            <div className="action-button-icon">&#x2197;</div>
           </div>
         </>
       )}

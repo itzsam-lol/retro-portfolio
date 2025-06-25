@@ -3,10 +3,12 @@
   width: 100%;
   height: 100%;
   background: transparent;
+  z-index: 1; /* Keep beams in background */
 }
 
 .beams-container canvas {
   display: block;
   width: 100% !important;
   height: 100% !important;
+  z-index: 1; /* Ensure Three.js canvas stays behind */
 }

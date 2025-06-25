@@ -1,78 +1,167 @@
 .menu-container {
-  min-height: 100vh;
-  position: relative;
-  background: radial-gradient(circle at center, #330066, #000000);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #1a0033, #000000);
   overflow: hidden;
 }
 
-.menu-header {
+/* Background layer - lowest priority */
+.background-layer {
   position: absolute;
-  top: 80px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.beams-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3; /* Reduce opacity so menu is more visible */
+}
+
+.retro-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 65, 0.02) 2px,
+    rgba(0, 255, 65, 0.02) 4px
+  );
+  pointer-events: none;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Navigation button */
+.nav-button {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+  background: linear-gradient(45deg, #ff0080, #8000ff);
+  border: 3px solid #00ff41;
+  color: #00ff41;
+  padding: 15px 25px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.nav-button:hover {
+  background: linear-gradient(45deg, #8000ff, #ff0080);
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.6);
+  transform: scale(1.05);
+}
+
+/* Header */
+.menu-header {
+  position: fixed;
+  top: 40px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   z-index: 100;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 255, 65, 0.2);
 }
 
 .menu-title {
   font-family: 'Orbitron', monospace;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   color: #ff0080;
   text-shadow: 0 0 20px #ff0080;
   margin-bottom: 10px;
-  animation: pixelGlow 3s ease-in-out infinite;
+  animation: titlePulse 3s ease-in-out infinite;
 }
 
 .menu-subtitle {
-  font-size: clamp(0.6rem, 1.5vw, 1rem);
+  font-size: clamp(0.6rem, 1.2vw, 1rem);
   color: #00ffff;
   text-shadow: 0 0 10px #00ffff;
+  font-family: 'Press Start 2P', monospace;
 }
 
-.infinite-menu-wrapper {
+@keyframes titlePulse {
+  0%, 100% { 
+    text-shadow: 0 0 20px #ff0080;
+  }
+  50% { 
+    text-shadow: 0 0 30px #ff0080, 0 0 40px #ff0080;
+  }
+}
+
+/* Fullscreen menu wrapper */
+.fullscreen-menu-wrapper {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80vw;
-  height: 70vh;
-  max-width: 1200px;
-  max-height: 800px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
 }
 
-/* Override InfiniteMenu styles for retro theme */
-.infinite-menu-wrapper .face-title {
-  font-family: 'Press Start 2P', monospace !important;
-  color: #00ff41 !important;
-  text-shadow: 0 0 15px #00ff41 !important;
-  font-size: clamp(2rem, 4vw, 4rem) !important;
-}
-
-.infinite-menu-wrapper .face-description {
-  font-family: 'Press Start 2P', monospace !important;
-  color: #00ffff !important;
-  text-shadow: 0 0 10px #00ffff !important;
-  font-size: clamp(0.8rem, 1.5vw, 1.5rem) !important;
-}
-
-.infinite-menu-wrapper .action-button {
-  background: linear-gradient(45deg, #ff0080, #8000ff) !important;
-  border: 3px solid #00ff41 !important;
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5) !important;
-}
-
-.infinite-menu-wrapper .action-button:hover {
-  box-shadow: 0 0 30px rgba(0, 255, 65, 0.8) !important;
-  transform: translateX(-50%) scale(1.1) !important;
-}
-
+/* Mobile responsiveness */
 @media (max-width: 768px) {
-  .infinite-menu-wrapper {
-    width: 95vw;
-    height: 60vh;
+  .nav-button {
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 10px;
   }
   
   .menu-header {
-    top: 40px;
+    top: 20px;
+    padding: 15px;
+  }
+  
+  .menu-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  
+  .menu-subtitle {
+    font-size: clamp(0.5rem, 1vw, 0.8rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-header {
+    top: 10px;
+    padding: 10px;
   }
 }
