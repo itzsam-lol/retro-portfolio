@@ -9,31 +9,31 @@ const MenuPage = () => {
 
   const menuItems = [
     {
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop&auto=format',
+      image: '/exp.png', // Your custom experience dino image
       link: '/experience',
       title: 'EXPERIENCE',
       description: 'Professional journey and internships'
     },
     {
-      image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=800&fit=crop&auto=format',
+      image: '/project.png',
       link: '/projects', 
       title: 'PROJECTS',
       description: 'Innovative solutions and creations'
     },
     {
-      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=800&fit=crop&auto=format',
-      link: '/education',
-      title: 'EDUCATION', 
-      description: 'Academic background and achievements'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=800&fit=crop&auto=format',
+      image: '/skill.png', // Your custom skills dino image
       link: '/skills',
       title: 'SKILLS',
       description: 'Technical expertise and tools'
     },
     {
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68e2c6b7d3?w=800&h=800&fit=crop&auto=format',
+      image: '/edu.png', // Your custom education dino image
+      link: '/education',
+      title: 'EDUCATION', 
+      description: 'Academic background and achievements'
+    },
+    {
+      image: '/contact.png', // Your custom contact dino image
       link: '/contact',
       title: 'CONTACT',
       description: 'Get in touch and connect'
