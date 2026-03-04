@@ -558,7 +558,7 @@ class InfiniteGridMenu {
   #init(onInit) {
     this.gl = this.canvas.getContext('webgl2', { antialias: true, alpha: false });
     const gl = this.gl;
-    
+
     if (!gl) {
       console.error('WebGL 2 not supported. Trying WebGL 1...');
       this.gl = this.canvas.getContext('webgl', { antialias: true, alpha: false });
@@ -656,17 +656,18 @@ class InfiniteGridMenu {
       results.forEach((result, i) => {
         const x = (i % this.atlasSize) * cellSize;
         const y = Math.floor(i / this.atlasSize) * cellSize;
-        
+
         if (result.success && result.img) {
           ctx.drawImage(result.img, x, y, cellSize, cellSize);
         } else {
           // Draw a placeholder for failed images
-          ctx.fillStyle = '#333333';
+          ctx.fillStyle = '#1e293b'; // Slate background
           ctx.fillRect(x, y, cellSize, cellSize);
-          ctx.fillStyle = '#00ff41';
-          ctx.font = '48px monospace';
+          ctx.fillStyle = '#3b82f6'; // Accent blue
+          ctx.font = '60px Inter, sans-serif';
           ctx.textAlign = 'center';
-          ctx.fillText('?', x + cellSize/2, y + cellSize/2);
+          ctx.textBaseline = 'middle';
+          ctx.fillText('?', x + cellSize / 2, y + cellSize / 2);
         }
       });
 
@@ -680,9 +681,9 @@ class InfiniteGridMenu {
       fallbackCanvas.width = cellSize;
       fallbackCanvas.height = cellSize;
       const fallbackCtx = fallbackCanvas.getContext('2d');
-      fallbackCtx.fillStyle = '#333333';
+      fallbackCtx.fillStyle = '#1e293b'; // Slate background
       fallbackCtx.fillRect(0, 0, cellSize, cellSize);
-      
+
       gl.bindTexture(gl.TEXTURE_2D, this.tex);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, fallbackCanvas);
     });
@@ -923,9 +924,9 @@ export default function InfiniteMenu({ items = [] }) {
       console.log('No active item or link');
       return;
     }
-    
+
     console.log('Navigating to:', activeItem.link);
-    
+
     if (activeItem.link.startsWith('http')) {
       window.open(activeItem.link, '_blank');
     } else if (activeItem.link.startsWith('/')) {

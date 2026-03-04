@@ -13,25 +13,46 @@ const ExperiencePage = () => {
 
   const experiences = [
     {
-      company: "Fam (FamPay)",
-      role: "Application Tester Intern",
+      company: "Fam (formerly FamPay)",
+      role: "Software Testing Intern",
       duration: "May 2024 - July 2024",
-      description: "Worked as an Application Tester intern, collaborating with a team of 6 to identify and resolve software issues, ensuring optimal performance and user experience.",
-      skills: ["Testing", "Quality Assurance", "Team Collaboration", "Bug Reporting"]
+      description: "Streamlined the bug-reporting workflow, reducing resolution time by 15% across the team. Collaborated cross-functionally to execute rigorous user-flow testing, ensuring a seamless CX and identifying critical bottlenecks in the payment gateway.",
+      skills: ["Testing", "Quality Assurance", "Process Optimization", "Bug Reporting"]
+    },
+    {
+      company: "CoSY Lab, IIIT Delhi",
+      role: "Research Intern",
+      duration: "May 2025 - July 2025",
+      description: "Managed the end-to-end product lifecycle for the Foodoscope frontend, focusing on data accessibility. Translated complex research data into actionable visual dashboards using first-principles design thinking.",
+      skills: ["Product Lifecycle", "Data Visualization", "Design Thinking", "Frontend"]
+    },
+    {
+      company: "IIIT Delhi",
+      role: "Teaching Assistant - Data Structures and Algorithms",
+      duration: "Jan 2026 - Present",
+      description: "Managing academic operations and logistics for a batch of 100+ students. Coordinating grading workflows and mentoring students in analytical problem-solving.",
+      skills: ["Mentoring", "Academic Operations", "Problem Solving", "Logistics"]
     },
     {
       company: "IEEE-IIITD Student Branch",
       role: "Vice Chairperson",
-      duration: "Nov 2024 - Present",
-      description: "Leading technical initiatives and managing student activities for the IEEE student branch at IIIT Delhi.",
-      skills: ["Leadership", "Event Management", "Technical Coordination", "Team Management"]
+      duration: "Nov 2024 - Aug 2025",
+      description: "Led strategy and operations for the largest student branch; boosted event turnout by 20% through process improvements. Managed a team of 50+ volunteers, delegating tasks effectively to ensure operational excellence.",
+      skills: ["Leadership", "Strategy", "Operations", "Team Management"]
     },
     {
-      company: "Odyssey (Cultural Fest)",
+      company: "Hack The Flame (National Hackathon)",
+      role: "Organizer",
+      duration: "Sept 2025 - Dec 2025",
+      description: "Managed logistics and vendor operations for a national event, coordinating on-ground execution for 500+ participants. Oversaw the budget allocation and sponsor deliverables, ensuring zero operational downtime.",
+      skills: ["Vendor Operations", "Logistics", "Budget Allocation", "Event Management"]
+    },
+    {
+      company: "Odyssey (Cultural Fest) & E-Summit",
       role: "PR Team Lead",
-      duration: "Dec 2024 - Present",
-      description: "Leading public relations and marketing efforts for IIIT Delhi's cultural festival.",
-      skills: ["Public Relations", "Marketing", "Event Promotion", "Social Media"]
+      duration: "Aug 2024 - Mar 2025",
+      description: "Handled stakeholder management and external communications for footfalls exceeding 50,000. Resolved real-time operational crises during events to ensure smooth scheduling.",
+      skills: ["Stakeholder Management", "Public Relations", "Crisis Management", "Communications"]
     }
   ];
 
@@ -39,7 +60,7 @@ const ExperiencePage = () => {
     <div className="page-container">
       <div className="retro-grid"></div>
       <div className="scanlines"></div>
-      
+
       <button className="nav-button" onClick={() => navigate('/menu')}>
         ← MENU
       </button>
@@ -65,7 +86,7 @@ const ExperiencePage = () => {
 
         <div className="experience-grid">
           {experiences.map((exp, index) => (
-            <div key={index} className="experience-card" style={{animationDelay: `${index * 0.2}s`}}>
+            <div key={index} className="experience-card" style={{ animationDelay: `${index * 0.2}s` }}>
               <div className="card-header">
                 <h3 className="company-name">{exp.company}</h3>
                 <span className="duration">{exp.duration}</span>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { Mail, MapPin, Github, Trophy } from 'lucide-react';
 import Beams from './Beams';
 import './PageStyles.css';
 
@@ -31,14 +32,14 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       await addDoc(collection(db, 'messages'), {
         ...formData,
         timestamp: new Date(),
         status: 'unread'
       });
-      
+
       setSubmitStatus('Message sent successfully! I\'ll get back to you soon.');
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
@@ -54,22 +55,22 @@ const ContactPage = () => {
     {
       label: "EMAIL",
       value: "satyam23495@iiitd.ac.in",
-      icon: "📧"
+      icon: <Mail size={28} color="var(--accent-blue)" />
     },
     {
       label: "LOCATION",
       value: "New Delhi, India",
-      icon: "📍"
+      icon: <MapPin size={28} color="var(--accent-violet)" />
     },
     {
       label: "GITHUB",
-      value: "github.com/satyam",
-      icon: "💻"
+      value: "github.com/itzsam-lol",
+      icon: <Github size={28} color="var(--text-main)" />
     },
     {
-      label: "CODEFORCES",
-      value: "1600+ Rating",
-      icon: "🏆"
+      label: "LEETCODE",
+      value: "300+ Problems Solved",
+      icon: <Trophy size={28} color="#ffcc00" />
     }
   ];
 
@@ -77,7 +78,7 @@ const ContactPage = () => {
     <div className="page-container">
       <div className="retro-grid"></div>
       <div className="scanlines"></div>
-      
+
       <button className="nav-button" onClick={() => navigate('/menu')}>
         ← MENU
       </button>
@@ -106,7 +107,7 @@ const ContactPage = () => {
             <h3 className="info-title">CONNECTION_DETAILS</h3>
             <div className="contact-info-grid">
               {contactInfo.map((info, index) => (
-                <div key={index} className="contact-info-item" style={{animationDelay: `${index * 0.1}s`}}>
+                <div key={index} className="contact-info-item" style={{ animationDelay: `${index * 0.1}s` }}>
                   <span className="contact-icon">{info.icon}</span>
                   <div className="contact-details">
                     <span className="contact-label">{info.label}</span>
@@ -172,8 +173,8 @@ const ContactPage = () => {
                 ></textarea>
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className={`submit-button ${isSubmitting ? 'submitting' : ''}`}
                 disabled={isSubmitting}
               >

@@ -7,12 +7,14 @@ import ProjectsPage from './components/ProjectsPage';
 import EducationPage from './components/EducationPage';
 import SkillsPage from './components/SkillsPage';
 import ContactPage from './components/ContactPage';
+import CustomCursor from './components/CustomCursor';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <CustomCursor />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/menu" element={<MenuPage />} />

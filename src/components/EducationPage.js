@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Trophy } from 'lucide-react';
 import Beams from './Beams';
 import './PageStyles.css';
 
@@ -16,8 +17,8 @@ const EducationPage = () => {
       institution: "Indraprastha Institute of Information and Technology, Delhi",
       degree: "B.Tech (CSE)",
       duration: "2023 - 2027 (Present)",
-      grade: "CGPA: 5.60 (till 3rd Semester)",
-      courses: ["Introduction to Intelligent Systems", "Competitive Programming-I", "Advanced Programming", "Data Structures and Algorithm"]
+      grade: "CGPA: 5.60 (till 5th Semester)",
+      courses: ["Artificial Intelligence", "Competitive Programming-I", "Advanced Programming", "Data Structures and Algorithm"]
     },
     {
       institution: "Mira Model School, Delhi",
@@ -36,9 +37,11 @@ const EducationPage = () => {
   ];
 
   const achievements = [
-    "1600+ Rating on Codeforces",
+    "1500 Rating on Codeforces",
+    "Solved 300+ problems on LeetCode",
     "Creative Student Award, Mira Model School",
     "Academic Excellence Award, Mira Model School",
+    "Winner, Intra-College Business Strategy Challenge (2024)",
     "Chemistry Olympiad Qualifier, Royal Australian Chemistry Institute",
     "Inter School Maths Competition Runner Up, Mothers International School",
     "Cracked National Maths Olympiad up to State level"
@@ -48,7 +51,7 @@ const EducationPage = () => {
     <div className="page-container">
       <div className="retro-grid"></div>
       <div className="scanlines"></div>
-      
+
       <button className="nav-button" onClick={() => navigate('/menu')}>
         ← MENU
       </button>
@@ -76,7 +79,7 @@ const EducationPage = () => {
           <h2 className="section-title">ACADEMIC RECORDS</h2>
           <div className="education-grid">
             {education.map((edu, index) => (
-              <div key={index} className="education-card" style={{animationDelay: `${index * 0.2}s`}}>
+              <div key={index} className="education-card" style={{ animationDelay: `${index * 0.2}s` }}>
                 <h3 className="institution-name">{edu.institution}</h3>
                 <h4 className="degree-title">{edu.degree}</h4>
                 <div className="education-details">
@@ -97,8 +100,8 @@ const EducationPage = () => {
           <h2 className="section-title">ACHIEVEMENTS_LOG</h2>
           <div className="achievements-grid">
             {achievements.map((achievement, index) => (
-              <div key={index} className="achievement-item" style={{animationDelay: `${(index + 3) * 0.1}s`}}>
-                <span className="achievement-icon">🏆</span>
+              <div key={index} className="achievement-item" style={{ animationDelay: `${(index + 3) * 0.1}s` }}>
+                <span className="achievement-icon"><Trophy size={20} color="var(--accent-blue)" /></span>
                 <span className="achievement-text">{achievement}</span>
               </div>
             ))}

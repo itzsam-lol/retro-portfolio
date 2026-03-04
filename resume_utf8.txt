@@ -1,0 +1,48 @@
+Satyam Email : satyam23495@iiitd.ac.in
+github.com/itzsam-lol|leetcode.com/u/samuraiiii Mobile : +91-9811230374
+Education
+Indraprastha Institute of Information and T echnologyNew Delhi, India
+B.Tech in Computer Science and Engineering 2023 – Present
+Mira Model School New Delhi, India
+High School Diploma 2023
+Experience (Operations & Product)
+F am (formerly F amPay) Remote
+Software Testing Intern May 2024 – July 2024
+◦Process Optimization:Streamlined the bug-reporting workflow, reducing resolution time by 15% across the team.
+◦Quality Assurance:Collaborated cross-functionally to execute rigorous user-flow testing, ensuring a seamless CX.
+◦Identified critical bottlenecks in the payment gateway, directly contributing to improved product reliability.
+CoSY Lab, IIIT DelhiNew Delhi, India
+Research Intern (Guide: Prof. Ganesh Bagler) May 2025 – July 2025
+◦Managed theend-to-end product lifecyclefor theFoodoscopefrontend, focusing on data accessibility.
+◦Translated complex research data into actionable visual dashboards using first-principles design thinking.
+IIIT Delhi New Delhi, India
+Teaching Assistant - Data Structures and Algorithms Jan 2026 – Present
+◦Managing academic operations and logistics for a batch of 100+ students.
+◦Coordinating grading workflows and mentoring students in analytical problem-solving.
+Leadership & Operations
+Hack The Flame (National Hackathon)Mumbai, India
+Organizer Sept 2025 – Dec 2025
+◦Managedlogistics and vendor operationsfor a national event, coordinating on-ground execution for 500+
+participants.
+◦Oversaw the budget allocation and sponsor deliverables, ensuring zero operational downtime.
+IEEE-IIITD Student BranchNew Delhi, India
+Vice Chairperson Nov 2024 – Aug 2025
+◦Ledstrategy and operationsfor the largest student branch; boosted event turnout by 20% through process
+improvements.
+◦Managed a team of 50+ volunteers, delegating tasks effectively to ensure operational excellence.
+Odyssey (Cultural F est) & E-SummitNew Delhi, India
+PR Team Lead Aug 2024 – Mar 2025
+◦Handledstakeholder managementand external communications for footfalls exceeding 50,000.
+◦Resolved real-time operational crises during events to ensure smooth scheduling.
+Projects
+Course Registration System (ERP):Designed abusiness process toolsimulating university operations. Implemented
+RBAC for secure user hierarchies. (Java, Swing)
+F1 Prediction Analytics:Built a predictive model using Random Forest/XGBoost to forecast race outcomes based on
+real-time API data. (Python, ML)
+RISC-V Simulator & Assembler:Developed a comprehensive simulation framework to translate assembly code to machine
+code. Validated complex logic flows and memory manipulation. (Python)
+Skills & Achievements
+Skills: Operations Management, Data Analysis, Stakeholder Management, Python, SQL, Process Improvement
+Achievements:Winner, Intra-College Business Strategy Challenge (2024);Best Organizing T eam
+Award (Odyssey ’24); Creative Student Academic Excellence Award (Mira Model School); Solved300+
+problems on LeetCode.

@@ -20,11 +20,23 @@ const SkillsPage = () => {
         { name: "Java", level: 85 },
         { name: "JavaScript", level: 80 },
         { name: "C", level: 85 },
+        { name: "SQL", level: 80 },
         { name: "MATLAB", level: 75 }
       ]
     },
     {
-      category: "Web Technologies",
+      category: "Operations & Management",
+      skills: [
+        { name: "Operations Management", level: 90 },
+        { name: "Data Analysis", level: 85 },
+        { name: "Process Improvement", level: 90 },
+        { name: "Stakeholder Management", level: 85 },
+        { name: "Logistics Coordination", level: 80 },
+        { name: "Event Management", level: 85 }
+      ]
+    },
+    {
+      category: "Web & Frameworks",
       skills: [
         { name: "React", level: 90 },
         { name: "Next.js", level: 85 },
@@ -71,7 +83,7 @@ const SkillsPage = () => {
     <div className="page-container">
       <div className="retro-grid"></div>
       <div className="scanlines"></div>
-      
+
       <button className="nav-button" onClick={() => navigate('/menu')}>
         ← MENU
       </button>
@@ -97,19 +109,19 @@ const SkillsPage = () => {
 
         <div className="skills-container">
           {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="skill-category" style={{animationDelay: `${categoryIndex * 0.2}s`}}>
+            <div key={categoryIndex} className="skill-category" style={{ animationDelay: `${categoryIndex * 0.2}s` }}>
               <h3 className="category-title">{category.category}</h3>
               <div className="skills-list">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="skill-item" style={{animationDelay: `${(categoryIndex * 6 + skillIndex) * 0.1}s`}}>
+                  <div key={skillIndex} className="skill-item" style={{ animationDelay: `${(categoryIndex * 6 + skillIndex) * 0.1}s` }}>
                     <div className="skill-header">
                       <span className="skill-name">{skill.name}</span>
                       <span className="skill-percentage">{skill.level}%</span>
                     </div>
                     <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{width: `${skill.level}%`}}
+                      <div
+                        className="skill-progress"
+                        style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
                   </div>
@@ -123,7 +135,7 @@ const SkillsPage = () => {
           <h2 className="section-title">INTERESTS & HOBBIES</h2>
           <div className="interests-grid">
             {interests.map((interest, index) => (
-              <div key={index} className="interest-item" style={{animationDelay: `${(index + 20) * 0.1}s`}}>
+              <div key={index} className="interest-item" style={{ animationDelay: `${(index + 20) * 0.1}s` }}>
                 {interest}
               </div>
             ))}
