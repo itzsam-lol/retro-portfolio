@@ -4,12 +4,13 @@ import { Github, Mail, ExternalLink, ChevronRight, Code2, Cpu, Trophy } from 'lu
 import Beams from './Beams';
 import './HomePage.css';
 
+const roles = ['Software Developer', 'Web Developer', 'CS Student @ IIIT Delhi', 'Teaching Assistant'];
+
 const HomePage = () => {
     const navigate = useNavigate();
     const [isLoaded, setIsLoaded] = useState(false);
     const [typedText, setTypedText] = useState('');
 
-    const roles = ['Software Developer', 'Web Developer', 'CS Student @ IIIT Delhi', 'Teaching Assistant'];
     const [roleIndex, setRoleIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
